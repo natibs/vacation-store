@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, computed, inject, input, output, signal } from '@angular/core';
+import { ChangeDetectionStrategy, Component, computed, inject, input, model, output, signal } from '@angular/core';
 import { VacationPlace } from '../../models/place.model';
 import { PlacesService } from '../../services/places.service';
 
@@ -17,25 +17,18 @@ export class PlaceAutocompleteComponent {
 
   label = input('Where to');
   placeholder = input('City, region or landmark in Switzerland');
-  initialQuery = input('', { alias: 'query' });
+  query = model('');
 
   placeSelected = output<VacationPlace | null>();
-  queryChange = output<string>();
 
-  protected readonly query = signal('');
   protected readonly open = signal(false);
   protected readonly suggestions = computed(() => this.placesService.suggest(this.query()));
-
-  constructor() {
-    this.query.set(this.initialQuery());
-  }
 
   protected onInput(event: Event): void {
     const value = (event.target as HTMLInputElement).value;
     this.query.set(value);
     this.open.set(true);
     this.placeSelected.emit(null);
-    this.queryChange.emit(value);
   }
 
   protected onFocus(): void {
@@ -50,6 +43,5 @@ export class PlaceAutocompleteComponent {
     this.query.set(place.name);
     this.open.set(false);
     this.placeSelected.emit(place);
-    this.queryChange.emit(place.name);
   }
 }

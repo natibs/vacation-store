@@ -3,14 +3,14 @@
     <button natiUiButton variant="ghost" size="sm" (click)="backToHome()">&larr; Modify search</button>
   </div>
   <h1 natiUiHeading [size]="'h2'">
-    {{ place() ? 'Stays in ' + place() : 'All stays in Switzerland' }}
+    {{ searchState.placeQuery() ? 'Stays in ' + searchState.placeQuery() : 'All stays in Switzerland' }}
   </h1>
   <p class="resultsSummary">
     @if (from() && to()) {
       {{ from() }} &ndash; {{ to() }} ·
     }
-    @if (guests()) {
-      {{ guests() }} {{ guests() === 1 ? 'guest' : 'guests' }} ·
+    @if (searchState.guests()) {
+      {{ searchState.guests() }} {{ searchState.guests() === 1 ? 'guest' : 'guests' }} ·
     }
     {{ results().length }} {{ results().length === 1 ? 'place' : 'places' }} found
   </p>

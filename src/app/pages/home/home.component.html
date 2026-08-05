@@ -21,8 +21,8 @@
     <div class="searchCard">
       <app-place-autocomplete
         class="searchField searchFieldPlace"
+        [(query)]="searchState.placeQuery"
         (placeSelected)="onPlaceSelected($event)"
-        (queryChange)="placeQuery.set($event)"
       />
 
       <nati-ui-datepicker
@@ -30,10 +30,15 @@
         label="Check-in / check-out"
         mode="range"
         [min]="null"
-        [(ngModel)]="dateRange"
+        [ngModel]="searchState.dateRange()"
+        (ngModelChange)="searchState.dateRange.set($event)"
       />
 
-      <app-guest-stepper class="searchField searchFieldGuests" [(value)]="guests" />
+      <app-guest-stepper
+        class="searchField searchFieldGuests"
+        [value]="searchState.guests()"
+        (valueChange)="searchState.guests.set($event)"
+      />
 
       <button natiUiButton class="searchButton" (click)="search()">Search</button>
     </div>
