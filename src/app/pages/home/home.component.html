@@ -1,0 +1,50 @@
+<section class="hero">
+  <svg class="heroMountains" viewBox="0 0 1200 320" preserveAspectRatio="none" aria-hidden="true">
+    <polygon
+      class="heroHillsBack"
+      points="0,320 0,200 200,140 380,210 580,120 800,200 1000,150 1200,190 1200,320"
+    />
+    <polygon class="heroPeak" points="480,320 620,90 760,320" />
+    <polygon class="heroPeakSnow" points="560,180 590,150 620,120 650,150 680,180 620,150" />
+    <polygon
+      class="heroHillsFront"
+      points="0,320 0,260 250,230 500,280 750,240 1000,270 1200,250 1200,320"
+    />
+  </svg>
+  <div class="heroOverlay"></div>
+  <div class="heroContent">
+    <h1 natiUiHeading class="heroTitle" aria-label="Discover Switzerland">
+      <nati-ui-typewriter [text]="heroTaglines" fontSize="inherit" aria-hidden="true" />
+    </h1>
+    <p class="heroSubtitle">Alpine villages, lakeside cities and mountain hideaways — find your next stay.</p>
+
+    <div class="searchCard">
+      <app-place-autocomplete
+        class="searchField searchFieldPlace"
+        (placeSelected)="onPlaceSelected($event)"
+        (queryChange)="placeQuery.set($event)"
+      />
+
+      <nati-ui-datepicker
+        class="searchField"
+        label="Check-in / check-out"
+        mode="range"
+        [min]="null"
+        [(ngModel)]="dateRange"
+      />
+
+      <app-guest-stepper class="searchField searchFieldGuests" [(value)]="guests" />
+
+      <button natiUiButton class="searchButton" (click)="search()">Search</button>
+    </div>
+  </div>
+</section>
+
+<section class="featured">
+  <h2 natiUiHeading>Popular destinations</h2>
+  <div class="featuredGrid">
+    @for (place of featuredPlaces; track place.id) {
+      <app-place-card [place]="place" (selected)="browsePlace($event)" />
+    }
+  </div>
+</section>

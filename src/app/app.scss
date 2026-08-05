@@ -1,0 +1,33 @@
+.themeToggle {
+  position: fixed;
+  top: var(--nati-ui-space-4);
+  right: var(--nati-ui-space-4);
+  z-index: 500;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  padding: 0;
+  color: var(--nati-ui-color-neutral-900);
+  cursor: pointer;
+  background: var(--nati-ui-color-neutral-0);
+  border: 1px solid var(--nati-ui-color-neutral-200);
+  border-radius: var(--nati-ui-radius-full);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.18);
+
+  svg {
+    width: 20px;
+    height: 20px;
+  }
+
+  &:hover {
+    background: var(--nati-ui-color-neutral-100);
+  }
+
+  &:focus-visible {
+    outline: none;
+    box-shadow: 0 0 0 var(--nati-ui-focus-ring-width)
+      color-mix(in srgb, var(--nati-ui-focus-ring-color) 30%, transparent);
+  }
+}

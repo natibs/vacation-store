@@ -1,0 +1,27 @@
+:host {
+  display: block;
+  max-width: 1200px;
+  padding: var(--nati-ui-space-4);
+  margin: 0 auto;
+}
+
+.resultsHeaderTop {
+  margin-bottom: var(--nati-ui-space-2);
+}
+
+.resultsSummary {
+  margin: 0 0 var(--nati-ui-space-4);
+  color: var(--nati-ui-color-neutral-600);
+}
+
+.resultsGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: var(--nati-ui-space-4);
+}
+
+.resultsEmpty {
+  padding: var(--nati-ui-space-6) 0;
+  color: var(--nati-ui-color-neutral-500);
+  grid-column: 1 / -1;
+}

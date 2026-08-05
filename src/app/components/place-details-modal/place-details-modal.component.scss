@@ -1,0 +1,72 @@
+.placeDetailsGallery {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--nati-ui-space-2);
+  margin-bottom: var(--nati-ui-space-4);
+}
+
+.placeDetailsImage {
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+  border-radius: var(--nati-ui-radius-md);
+}
+
+.placeDetailsMeta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--nati-ui-space-2);
+  margin-bottom: var(--nati-ui-space-3);
+  font-size: var(--nati-ui-font-size-sm);
+  color: var(--nati-ui-color-neutral-600);
+}
+
+.placeDetailsRating {
+  font-weight: var(--nati-ui-font-weight-medium);
+  color: var(--nati-ui-color-neutral-900);
+}
+
+.placeDetailsDescription {
+  margin: 0 0 var(--nati-ui-space-4);
+  line-height: var(--nati-ui-line-height-md);
+  color: var(--nati-ui-color-neutral-700);
+}
+
+.placeDetailsSectionTitle {
+  margin: 0 0 var(--nati-ui-space-2);
+  font-size: var(--nati-ui-font-size-sm);
+  font-weight: var(--nati-ui-font-weight-semibold);
+  color: var(--nati-ui-color-neutral-900);
+}
+
+.placeDetailsAmenities {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--nati-ui-space-2);
+}
+
+.placeDetailsAmenity {
+  padding: var(--nati-ui-space-1) var(--nati-ui-space-3);
+  font-size: var(--nati-ui-font-size-xs);
+  color: var(--nati-ui-color-basic-700);
+  background: var(--nati-ui-color-basic-50);
+  border-radius: var(--nati-ui-radius-full);
+}
+
+:host ::ng-deep .natiUiModal [modal-footer].placeDetailsFooter {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.placeDetailsPrice {
+  font-size: var(--nati-ui-font-size-sm);
+  color: var(--nati-ui-color-neutral-700);
+
+  strong {
+    font-size: var(--nati-ui-font-size-md);
+    color: var(--nati-ui-color-basic-fill);
+  }
+}

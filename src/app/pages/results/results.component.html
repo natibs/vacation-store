@@ -1,0 +1,27 @@
+<section class="resultsHeader">
+  <div class="resultsHeaderTop">
+    <button natiUiButton variant="ghost" size="sm" (click)="backToHome()">&larr; Modify search</button>
+  </div>
+  <h1 natiUiHeading [size]="'h2'">
+    {{ place() ? 'Stays in ' + place() : 'All stays in Switzerland' }}
+  </h1>
+  <p class="resultsSummary">
+    @if (from() && to()) {
+      {{ from() }} &ndash; {{ to() }} ·
+    }
+    @if (guests()) {
+      {{ guests() }} {{ guests() === 1 ? 'guest' : 'guests' }} ·
+    }
+    {{ results().length }} {{ results().length === 1 ? 'place' : 'places' }} found
+  </p>
+</section>
+
+<section class="resultsGrid">
+  @for (item of results(); track item.id) {
+    <app-place-card [place]="item" (selected)="openDetails($event)" />
+  } @empty {
+    <p class="resultsEmpty">No stays match that search. Try a different place or fewer guests.</p>
+  }
+</section>
+
+<app-place-details-modal [place]="selectedPlace()" (closed)="closeDetails()" />

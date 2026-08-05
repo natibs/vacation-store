@@ -1,0 +1,35 @@
+<div class="natiUiField placeAutocomplete">
+  <label class="natiUiFieldLabel" [for]="inputId">{{ label() }}</label>
+  <div class="placeAutocompleteInputWrap">
+    <input
+      [id]="inputId"
+      class="natiUiInput"
+      type="text"
+      role="combobox"
+      aria-autocomplete="list"
+      [attr.aria-expanded]="open()"
+      [placeholder]="placeholder()"
+      [value]="query()"
+      autocomplete="off"
+      (input)="onInput($event)"
+      (focus)="onFocus()"
+      (blur)="onBlur()"
+      (keydown.escape)="open.set(false)"
+    />
+    @if (open() && suggestions().length) {
+      <ul class="placeAutocompleteList" role="listbox">
+        @for (place of suggestions(); track place.id) {
+          <li
+            class="placeAutocompleteOption"
+            role="option"
+            (mousedown)="$event.preventDefault()"
+            (click)="select(place)"
+          >
+            <span class="placeAutocompleteOptionName">{{ place.name }}</span>
+            <span class="placeAutocompleteOptionMeta">{{ place.canton }} · {{ place.region }}</span>
+          </li>
+        }
+      </ul>
+    }
+  </div>
+</div>

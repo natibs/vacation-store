@@ -1,0 +1,33 @@
+<nati-ui-modal size="lg" [title]="place()?.name ?? ''" (closed)="handleClosed()">
+  @if (place(); as p) {
+    <div class="placeDetails">
+      <div class="placeDetailsGallery">
+        @for (img of p.images; track img) {
+          <img class="placeDetailsImage" [src]="img" [alt]="p.name" loading="lazy" />
+        }
+      </div>
+
+      <div class="placeDetailsMeta">
+        <span class="placeDetailsAddress">{{ p.formattedAddress }}</span>
+        <span class="placeDetailsRating">★ {{ p.rating.toFixed(1) }} ({{ p.reviewCount }} reviews)</span>
+      </div>
+
+      <p class="placeDetailsDescription">{{ p.longDescription }}</p>
+
+      <h3 class="placeDetailsSectionTitle">Amenities</h3>
+      <div class="placeDetailsAmenities">
+        @for (amenity of p.amenities; track amenity) {
+          <span class="placeDetailsAmenity">{{ amenity }}</span>
+        }
+      </div>
+    </div>
+  }
+  @if (place(); as p) {
+    <div modal-footer class="placeDetailsFooter">
+      <span class="placeDetailsPrice">
+        <strong>CHF {{ p.pricePerNight }}</strong> / night · up to {{ p.maxGuests }} guests
+      </span>
+      <button natiUiButton (click)="book()">Book now</button>
+    </div>
+  }
+</nati-ui-modal>

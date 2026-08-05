@@ -6,7 +6,8 @@
     "start": "ng serve",
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
-    "test": "ng test"
+    "test": "ng test",
+    "sync:lib": "npm run build:lib --prefix ../ui-components && node -e \"const fs=require('fs');for(const p of ['node_modules/ui-components','node_modules/.vite','.angular/cache']){fs.rmSync(p,{recursive:true,force:true});}fs.cpSync('../ui-components/dist/ui-components','node_modules/ui-components',{recursive:true});console.log('ui-components synced — restart ng serve to pick it up')\""
   },
   "private": true,
   "packageManager": "npm@12.0.2",
@@ -18,7 +19,8 @@
     "@angular/platform-browser": "^22.1.0",
     "@angular/router": "^22.1.0",
     "rxjs": "~7.8.0",
-    "tslib": "^2.3.0"
+    "tslib": "^2.3.0",
+    "ui-components": "file:../ui-components/dist/ui-components"
   },
   "devDependencies": {
     "@angular/build": "^22.1.3",

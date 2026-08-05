@@ -1,0 +1,120 @@
+:host {
+  display: block;
+  height: 100%;
+}
+
+.placeCard {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  font-family: var(--nati-ui-font-family);
+  text-align: left;
+  cursor: pointer;
+  background: var(--nati-ui-color-neutral-0);
+  border: 1px solid var(--nati-ui-color-neutral-200);
+  border-radius: var(--nati-ui-radius-lg);
+  transition:
+    box-shadow var(--nati-ui-duration-quick) var(--nati-ui-easing-standard),
+    transform var(--nati-ui-duration-quick) var(--nati-ui-easing-standard);
+
+  &:hover {
+    box-shadow: 0 16px 40px rgba(0, 0, 0, 0.12);
+    transform: translateY(-2px);
+  }
+
+  &:focus-visible {
+    outline: none;
+    box-shadow: 0 0 0 var(--nati-ui-focus-ring-width)
+      color-mix(in srgb, var(--nati-ui-focus-ring-color) 30%, transparent);
+  }
+}
+
+.placeCardImageWrap {
+  position: relative;
+  aspect-ratio: 4 / 3;
+  overflow: hidden;
+  background: var(--nati-ui-color-neutral-100);
+}
+
+.placeCardImage {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.placeCardRating {
+  position: absolute;
+  top: var(--nati-ui-space-2);
+  right: var(--nati-ui-space-2);
+  padding: 2px var(--nati-ui-space-2);
+  font-size: var(--nati-ui-font-size-xs);
+  font-weight: var(--nati-ui-font-weight-semibold);
+  color: var(--nati-ui-color-neutral-900);
+  background: color-mix(in srgb, var(--nati-ui-color-neutral-0) 92%, transparent);
+  border-radius: var(--nati-ui-radius-full);
+}
+
+.placeCardBody {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  gap: var(--nati-ui-space-1);
+  padding: var(--nati-ui-space-3) var(--nati-ui-space-4) var(--nati-ui-space-4);
+}
+
+.placeCardTitleRow {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--nati-ui-space-2);
+}
+
+.placeCardName {
+  font-size: var(--nati-ui-font-size-lg);
+  font-weight: var(--nati-ui-font-weight-semibold);
+  color: var(--nati-ui-color-neutral-900);
+}
+
+.placeCardCanton {
+  font-size: var(--nati-ui-font-size-xs);
+  color: var(--nati-ui-color-neutral-500);
+  white-space: nowrap;
+}
+
+.placeCardDescription {
+  flex: 1;
+  margin: 0;
+  overflow: hidden;
+  font-size: var(--nati-ui-font-size-sm);
+  line-height: var(--nati-ui-line-height-md);
+  color: var(--nati-ui-color-neutral-600);
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+}
+
+.placeCardFooter {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  padding-top: var(--nati-ui-space-2);
+  margin-top: var(--nati-ui-space-1);
+  border-top: 1px solid var(--nati-ui-color-neutral-100);
+}
+
+.placeCardPrice {
+  font-size: var(--nati-ui-font-size-sm);
+  color: var(--nati-ui-color-neutral-900);
+
+  strong {
+    color: var(--nati-ui-color-basic-fill);
+  }
+}
+
+.placeCardGuests {
+  font-size: var(--nati-ui-font-size-xs);
+  color: var(--nati-ui-color-neutral-500);
+}

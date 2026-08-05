@@ -1,0 +1,19 @@
+<button type="button" class="placeCard" (click)="selected.emit(place())">
+  <div class="placeCardImageWrap">
+    <img class="placeCardImage" [src]="place().images[0]" [alt]="place().name" loading="lazy" />
+    <span class="placeCardRating">★ {{ place().rating.toFixed(1) }}</span>
+  </div>
+  <div class="placeCardBody">
+    <div class="placeCardTitleRow">
+      <span class="placeCardName">{{ place().name }}</span>
+      <span class="placeCardCanton">{{ place().canton }}</span>
+    </div>
+    <p class="placeCardDescription">{{ place().description }}</p>
+    <div class="placeCardFooter">
+      <span class="placeCardPrice"
+        ><strong>CHF {{ place().pricePerNight }}</strong> / night</span
+      >
+      <span class="placeCardGuests">up to {{ place().maxGuests }} guests</span>
+    </div>
+  </div>
+</button>
