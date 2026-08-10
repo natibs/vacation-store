@@ -1,26 +1,30 @@
-<section class="resultsHeader">
-  <div class="resultsHeaderTop">
-    <button natiUiButton variant="ghost" size="sm" (click)="backToHome()">&larr; Modify search</button>
+<section class="resultsHero">
+  <div class="resultsHeroInner">
+    <button natiUiButton variant="ghost" size="sm" class="backButton" (click)="backToHome()">&larr; Modify search</button>
+    <h1 natiUiHeading [size]="'h2'" class="resultsTitle">
+      {{ searchState.placeQuery() ? 'Stays in ' + searchState.placeQuery() : 'All stays in Switzerland' }}
+    </h1>
+    <div class="resultsMeta">
+      @if (from() && to()) {
+        <span class="resultsChip">{{ from() }} &ndash; {{ to() }}</span>
+      }
+      @if (searchState.guests()) {
+        <span class="resultsChip">{{ searchState.guests() }} {{ searchState.guests() === 1 ? 'guest' : 'guests' }}</span>
+      }
+      <span class="resultsChip resultsChipCount">{{ results().length }} {{ results().length === 1 ? 'place' : 'places' }} found</span>
+    </div>
   </div>
-  <h1 natiUiHeading [size]="'h2'">
-    {{ searchState.placeQuery() ? 'Stays in ' + searchState.placeQuery() : 'All stays in Switzerland' }}
-  </h1>
-  <p class="resultsSummary">
-    @if (from() && to()) {
-      {{ from() }} &ndash; {{ to() }} ·
-    }
-    @if (searchState.guests()) {
-      {{ searchState.guests() }} {{ searchState.guests() === 1 ? 'guest' : 'guests' }} ·
-    }
-    {{ results().length }} {{ results().length === 1 ? 'place' : 'places' }} found
-  </p>
 </section>
 
 <section class="resultsGrid">
   @for (item of results(); track item.id) {
     <app-place-card [place]="item" (selected)="openDetails($event)" />
   } @empty {
-    <p class="resultsEmpty">No stays match that search. Try a different place or fewer guests.</p>
+    <div class="resultsEmpty">
+      <p class="resultsEmptyTitle">No stays match that search</p>
+      <p class="resultsEmptyText">Try a different place or fewer guests.</p>
+      <button natiUiButton variant="outline" size="sm" (click)="backToHome()">Modify search</button>
+    </div>
   }
 </section>
 
