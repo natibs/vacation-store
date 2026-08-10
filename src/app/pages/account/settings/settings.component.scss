@@ -1,0 +1,15 @@
+:host {
+  display: block;
+}
+
+.authFormRow {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--nati-ui-space-3);
+}
+
+@media (max-width: 420px) {
+  .authFormRow {
+    grid-template-columns: 1fr;
+  }
+}

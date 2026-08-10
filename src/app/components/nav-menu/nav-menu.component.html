@@ -1,0 +1,72 @@
+<button
+  type="button"
+  class="navMenuTrigger"
+  (click)="toggleMenu()"
+  [attr.aria-expanded]="open()"
+  aria-haspopup="true"
+  aria-label="Menu"
+>
+  @if (open()) {
+    <svg lucideX [size]="20"></svg>
+  } @else {
+    <svg lucideMenu [size]="20"></svg>
+  }
+</button>
+
+<nati-ui-menu position="right" (closed)="onMenuClosed()">
+  @if (authService.isAuthenticated()) {
+    <div class="navMenuProfile">
+      <div class="navMenuAvatar">
+        @if (authService.currentUser()?.pictureUrl) {
+          <img [src]="authService.currentUser()?.pictureUrl" alt="" />
+        } @else {
+          <span>{{ initials() }}</span>
+        }
+      </div>
+      <div class="navMenuProfileText">
+        <p class="navMenuName">
+          {{ authService.currentUser()?.firstName }} {{ authService.currentUser()?.lastName }}
+        </p>
+        <p class="navMenuEmail">{{ authService.currentUser()?.email }}</p>
+      </div>
+    </div>
+
+    <nav class="navMenuList">
+      <a routerLink="/account/settings" class="navMenuItem" (click)="closeMenu()">
+        <svg lucideSettings [size]="18"></svg>
+        Settings
+      </a>
+      <a routerLink="/account/change-password" class="navMenuItem" (click)="closeMenu()">
+        <svg lucideLock [size]="18"></svg>
+        Change password
+      </a>
+      <button type="button" class="navMenuItem" (click)="logout()">
+        <svg lucideLogOut [size]="18"></svg>
+        Log out
+      </button>
+    </nav>
+  } @else {
+    <nav class="navMenuList">
+      <a routerLink="/login" class="navMenuItem" (click)="closeMenu()">
+        <svg lucideLogIn [size]="18"></svg>
+        Log in
+      </a>
+      <a routerLink="/signup" class="navMenuItem" (click)="closeMenu()">
+        <svg lucideUserPlus [size]="18"></svg>
+        Sign up
+      </a>
+    </nav>
+  }
+
+  <div class="navMenuFooter">
+    <button type="button" class="navMenuItem" (click)="themeService.toggle()">
+      @if (themeService.theme() === 'dark') {
+        <svg lucideSun [size]="18"></svg>
+        Light mode
+      } @else {
+        <svg lucideMoon [size]="18"></svg>
+        Dark mode
+      }
+    </button>
+  </div>
+</nati-ui-menu>

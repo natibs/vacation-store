@@ -1,0 +1,18 @@
+<app-auth-card title="Settings" subtitle="Update your profile details.">
+  <form class="authForm" [formGroup]="form" (ngSubmit)="submit()">
+    <app-profile-picture-input [(value)]="pictureUrl" />
+
+    <div class="authFormRow">
+      <input natiUiInput formControlName="firstName" label="First name" autocomplete="given-name" />
+      <input natiUiInput formControlName="lastName" label="Last name" autocomplete="family-name" />
+    </div>
+
+    <input natiUiInput type="email" [value]="email" label="Email" disabled />
+
+    <button natiUiButton type="submit" class="authSubmit" [loading]="submitting()">
+      Save changes
+    </button>
+  </form>
+
+  <span auth-card-footer><a routerLink="/">Back to home</a></span>
+</app-auth-card>

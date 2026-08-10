@@ -1,0 +1,15 @@
+:host {
+  display: block;
+}
+
+.authInlineLink {
+  align-self: flex-end;
+  margin-top: calc(var(--nati-ui-space-1) * -2);
+  font-size: var(--nati-ui-font-size-sm);
+  color: var(--nati-ui-color-basic-fill);
+  text-decoration: none;
+
+  &:hover {
+    text-decoration: underline;
+  }
+}

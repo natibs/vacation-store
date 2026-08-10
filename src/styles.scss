@@ -12,3 +12,14 @@ body {
   color: var(--nati-ui-color-neutral-900);
   background: var(--nati-ui-color-neutral-50);
 }
+
+.authForm {
+  display: flex;
+  flex-direction: column;
+  gap: var(--nati-ui-space-4);
+}
+
+.authSubmit {
+  width: 100%;
+  margin-top: var(--nati-ui-space-2);
+}

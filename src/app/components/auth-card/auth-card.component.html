@@ -1,0 +1,14 @@
+<section class="authPage">
+  <div class="authCard">
+    <h1 natiUiHeading size="h3" class="authCardTitle">{{ title() }}</h1>
+    @if (subtitle()) {
+      <p class="authCardSubtitle">{{ subtitle() }}</p>
+    }
+
+    <ng-content></ng-content>
+
+    <div class="authCardFooter">
+      <ng-content select="[auth-card-footer]"></ng-content>
+    </div>
+  </div>
+</section>

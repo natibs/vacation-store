@@ -1,25 +1,18 @@
-.themeToggle {
+.logoLink {
   position: fixed;
   top: var(--nati-ui-space-4);
-  right: var(--nati-ui-space-4);
-  z-index: 500;
+  left: var(--nati-ui-space-4);
+  z-index: 700;
   display: inline-flex;
   align-items: center;
-  justify-content: center;
-  width: 40px;
-  height: 40px;
-  padding: 0;
+  gap: var(--nati-ui-space-2);
+  padding: var(--nati-ui-space-2) var(--nati-ui-space-3);
   color: var(--nati-ui-color-neutral-900);
-  cursor: pointer;
+  text-decoration: none;
   background: var(--nati-ui-color-neutral-0);
   border: 1px solid var(--nati-ui-color-neutral-200);
   border-radius: var(--nati-ui-radius-full);
   box-shadow: 0 4px 16px rgba(0, 0, 0, 0.18);
-
-  svg {
-    width: 20px;
-    height: 20px;
-  }
 
   &:hover {
     background: var(--nati-ui-color-neutral-100);
@@ -29,5 +22,153 @@
     outline: none;
     box-shadow: 0 0 0 var(--nati-ui-focus-ring-width)
       color-mix(in srgb, var(--nati-ui-focus-ring-color) 30%, transparent);
+  }
+}
+
+.logoMark {
+  width: 20px;
+  height: 20px;
+  color: var(--nati-ui-color-basic-fill);
+}
+
+.logoText {
+  font-size: var(--nati-ui-font-size-sm);
+  font-weight: var(--nati-ui-font-weight-bold);
+  letter-spacing: -0.01em;
+}
+
+.welcomeBanner {
+  display: flex;
+  align-items: center;
+  gap: var(--nati-ui-space-3);
+  width: min(640px, calc(100% - var(--nati-ui-space-4) * 2));
+  padding: var(--nati-ui-space-3) var(--nati-ui-space-4);
+  margin: 64px auto 0;
+  background: var(--nati-ui-color-neutral-0);
+  border: 1px solid var(--nati-ui-color-neutral-200);
+  border-radius: var(--nati-ui-radius-lg);
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.08);
+  animation: welcomeBannerIn 420ms var(--nati-ui-easing-standard);
+}
+
+.welcomeAvatar {
+  display: flex;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  overflow: hidden;
+  font-size: var(--nati-ui-font-size-sm);
+  font-weight: var(--nati-ui-font-weight-semibold);
+  color: var(--nati-ui-color-basic-on-fill);
+  background: var(--nati-ui-color-basic-fill);
+  border-radius: var(--nati-ui-radius-full);
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--nati-ui-color-basic-fill) 18%, transparent);
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+}
+
+.welcomeText {
+  flex: 1;
+  min-width: 0;
+}
+
+.welcomeGreeting {
+  margin: 0;
+  overflow: hidden;
+  font-size: var(--nati-ui-font-size-lg);
+  font-weight: var(--nati-ui-font-weight-bold);
+  color: var(--nati-ui-color-neutral-900);
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.welcomeWave {
+  display: inline-block;
+  transform-origin: 70% 70%;
+  animation: welcomeWave 1.6s ease-in-out 1;
+}
+
+.welcomeSubtitle {
+  margin: 2px 0 0;
+  font-size: var(--nati-ui-font-size-sm);
+  color: var(--nati-ui-color-neutral-500);
+}
+
+.welcomeTimeIcon {
+  display: flex;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border-radius: var(--nati-ui-radius-full);
+}
+
+.welcomeTimeIcon--morning {
+  color: var(--nati-ui-color-warning-500);
+  background: color-mix(in srgb, var(--nati-ui-color-warning-500) 14%, transparent);
+}
+
+.welcomeTimeIcon--afternoon {
+  color: var(--nati-ui-color-basic-fill);
+  background: color-mix(in srgb, var(--nati-ui-color-basic-fill) 14%, transparent);
+}
+
+.welcomeTimeIcon--evening {
+  color: var(--nati-ui-color-danger-500);
+  background: color-mix(in srgb, var(--nati-ui-color-danger-500) 14%, transparent);
+}
+
+.welcomeTimeIcon--night {
+  color: var(--nati-ui-color-neutral-600);
+  background: color-mix(in srgb, var(--nati-ui-color-neutral-600) 14%, transparent);
+}
+
+@keyframes welcomeBannerIn {
+  from {
+    opacity: 0;
+    transform: translateY(-8px);
+  }
+}
+
+@keyframes welcomeWave {
+  0%,
+  100% {
+    transform: rotate(0deg);
+  }
+  15% {
+    transform: rotate(14deg);
+  }
+  30% {
+    transform: rotate(-8deg);
+  }
+  45% {
+    transform: rotate(14deg);
+  }
+  60% {
+    transform: rotate(-4deg);
+  }
+  75% {
+    transform: rotate(10deg);
+  }
+}
+
+@media (max-width: 560px) {
+  .logoText {
+    display: none;
+  }
+
+  .welcomeBanner {
+    padding: var(--nati-ui-space-3);
+  }
+
+  .welcomeSubtitle {
+    display: none;
   }
 }

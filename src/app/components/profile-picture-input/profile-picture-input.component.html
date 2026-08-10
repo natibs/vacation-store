@@ -1,0 +1,37 @@
+<div class="pictureField">
+  <div class="pictureAvatar">
+    @if (value()) {
+      <img [src]="value()" alt="" />
+    } @else {
+      <svg viewBox="0 0 24 24" aria-hidden="true">
+        <path
+          d="M12 12a4.5 4.5 0 1 0 0-9 4.5 4.5 0 0 0 0 9Zm0 2c-4 0-8 2-8 5v1h16v-1c0-3-4-5-8-5Z"
+          fill="currentColor"
+        />
+      </svg>
+    }
+  </div>
+
+  <input
+    #pictureInput
+    type="file"
+    accept="image/*"
+    class="pictureInputHidden"
+    (change)="onSelected($event)"
+  />
+
+  <div class="pictureActions">
+    <button type="button" natiUiButton variant="outline" size="sm" (click)="pictureInput.click()">
+      {{ value() ? 'Change photo' : 'Add a photo' }}
+    </button>
+    @if (value()) {
+      <button type="button" natiUiButton variant="ghost" size="sm" (click)="clear(pictureInput)">
+        Remove
+      </button>
+    }
+  </div>
+
+  @if (error()) {
+    <p class="natiUiFieldError" role="alert">{{ error() }}</p>
+  }
+</div>

@@ -1,25 +1,48 @@
-<button
-  type="button"
-  class="themeToggle"
-  (click)="themeService.toggle()"
-  [attr.aria-label]="themeService.theme() === 'dark' ? 'Switch to light mode' : 'Switch to dark mode'"
->
-  @if (themeService.theme() === 'dark') {
-    <svg viewBox="0 0 20 20" aria-hidden="true">
-      <circle cx="10" cy="10" r="4" fill="none" stroke="currentColor" stroke-width="1.6" />
-      <path
-        d="M10 2v2M10 16v2M18 10h-2M4 10H2M15.5 4.5l-1.4 1.4M5.9 14.1l-1.4 1.4M15.5 15.5l-1.4-1.4M5.9 5.9 4.5 4.5"
-        stroke="currentColor"
-        stroke-width="1.6"
-        stroke-linecap="round"
-      />
-    </svg>
-  } @else {
-    <svg viewBox="0 0 20 20" aria-hidden="true">
-      <path d="M17 12.5A7 7 0 1 1 7.5 3a5.5 5.5 0 0 0 9.5 9.5Z" fill="currentColor" />
-    </svg>
-  }
-</button>
+<a routerLink="/" class="logoLink" aria-label="VacationStore home">
+  <svg class="logoMark" viewBox="0 0 24 24" aria-hidden="true">
+    <path d="M12 3 3 19h18L16 9l-3 5-1-2Z" fill="currentColor" />
+  </svg>
+  <span class="logoText">VacationStore</span>
+</a>
+
+<app-nav-menu />
+
+@if (authService.isAuthenticated()) {
+  <div class="welcomeBanner">
+    <div class="welcomeAvatar">
+      @if (authService.currentUser()?.pictureUrl) {
+        <img [src]="authService.currentUser()?.pictureUrl" alt="" />
+      } @else {
+        <span>{{ initials() }}</span>
+      }
+    </div>
+
+    <div class="welcomeText">
+      <p class="welcomeGreeting">
+        {{ greeting.text }}, {{ authService.currentUser()?.firstName }}
+        <span class="welcomeWave" aria-hidden="true">👋</span>
+      </p>
+      <p class="welcomeSubtitle">Ready to plan your next Swiss escape?</p>
+    </div>
+
+    <span class="welcomeTimeIcon" [class]="'welcomeTimeIcon--' + greeting.period" aria-hidden="true">
+      @switch (greeting.period) {
+        @case ('morning') {
+          <svg lucideSunrise [size]="18"></svg>
+        }
+        @case ('afternoon') {
+          <svg lucideSun [size]="18"></svg>
+        }
+        @case ('evening') {
+          <svg lucideSunset [size]="18"></svg>
+        }
+        @default {
+          <svg lucideMoon [size]="18"></svg>
+        }
+      }
+    </span>
+  </div>
+}
 
 <router-outlet />
 <nati-ui-toast />

@@ -1,0 +1,30 @@
+<app-auth-card title="Welcome back" subtitle="Log in to continue planning your trip.">
+  <form class="authForm" [formGroup]="form" (ngSubmit)="submit()">
+    @if (formError()) {
+      <nati-ui-error-message variant="banner" [message]="formError()!" />
+    }
+
+    <input
+      natiUiInput
+      type="email"
+      formControlName="email"
+      label="Email"
+      placeholder="you@example.com"
+      autocomplete="email"
+    />
+    <input
+      natiUiInput
+      type="password"
+      formControlName="password"
+      label="Password"
+      placeholder="••••••••"
+      autocomplete="current-password"
+    />
+
+    <a routerLink="/forgot-password" class="authInlineLink">Forgot your password?</a>
+
+    <button natiUiButton type="submit" class="authSubmit" [loading]="submitting()">Log in</button>
+  </form>
+
+  <span auth-card-footer>Don't have an account? <a routerLink="/signup">Sign up</a></span>
+</app-auth-card>

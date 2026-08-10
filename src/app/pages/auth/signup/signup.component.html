@@ -1,0 +1,47 @@
+<app-auth-card title="Create your account" subtitle="Save your favorite Swiss getaways and book in a click.">
+  <form class="authForm" [formGroup]="form" (ngSubmit)="submit()">
+    @if (formError()) {
+      <nati-ui-error-message variant="banner" [message]="formError()!" />
+    }
+
+    <div class="authFormRow">
+      <input natiUiInput formControlName="firstName" label="First name" autocomplete="given-name" />
+      <input natiUiInput formControlName="lastName" label="Last name" autocomplete="family-name" />
+    </div>
+
+    <input
+      natiUiInput
+      type="email"
+      formControlName="email"
+      label="Email"
+      placeholder="you@example.com"
+      autocomplete="email"
+      [customErrorMessages]="{ taken: 'An account with this email already exists.' }"
+    />
+
+    <input
+      natiUiInput
+      type="password"
+      formControlName="password"
+      label="Password"
+      autocomplete="new-password"
+      [customErrorMessages]="{ passwordComplexity: 'Password does not meet all requirements below.' }"
+    />
+    @if (passwordDirty()) {
+      <app-password-requirements [value]="passwordValue()" />
+    }
+
+    <input
+      natiUiInput
+      type="password"
+      formControlName="confirmPassword"
+      label="Confirm password"
+      autocomplete="new-password"
+      [customErrorMessages]="{ passwordsMismatch: 'Passwords do not match.' }"
+    />
+
+    <button natiUiButton type="submit" class="authSubmit" [loading]="submitting()">Create account</button>
+  </form>
+
+  <span auth-card-footer>Already have an account? <a routerLink="/login">Log in</a></span>
+</app-auth-card>
